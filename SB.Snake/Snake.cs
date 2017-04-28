@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Collections.Generic;
 
 namespace SB.Snake
 {
@@ -17,7 +15,6 @@ namespace SB.Snake
     internal const int WIDTH = 10;
     internal const int HEIGHT = 10;
     internal int Length = 1;
-    private List<Point> InternalHistory = new List<Point>();
 
     internal Snake(Size boardSize)
     {
@@ -27,20 +24,22 @@ namespace SB.Snake
       this.Y = (this.BoardSize.Height / 2) - (Snake.HEIGHT / 2);
     }
 
-    internal List<Point> History
-    {
-      get { return this.InternalHistory; }
-    }
+    internal List<Point> History { get; } = new List<Point>();
+
+    internal bool IsMoving => this.SpeedHoriz != 0 || this.SpeedVert != 0;
+
+    internal bool IsEatingSelf => this.IsMoving && this.History.Any(p => p.X == this.X && p.Y == this.Y);
 
     internal void UpdateLocation()
     {
-      if (this.InternalHistory.Last().X != this.X || this.InternalHistory.Last().Y != this.Y)
-      {
-        this.InternalHistory.Add(new Point(this.X, this.Y));
-        this.InternalHistory.Reverse();
-      }
+      if (!this.IsMoving)
+        return;
 
-      System.Diagnostics.Debug.WriteLine($"Snake is {this.Length} blocks long, with {this.History.Count} historical locations.");
+      if (this.History.Count == 0 || this.History.Last().X != this.X || this.History.Last().Y != this.Y)
+      {
+        this.History.Add(new Point(this.X, this.Y));
+        this.History.RemoveRange(0, this.History.Count - this.Length);
+      }
 
       this.X = this.X + (Snake.WIDTH * this.SpeedHoriz);
       this.Y = this.Y + (Snake.HEIGHT * this.SpeedVert);
@@ -48,13 +47,14 @@ namespace SB.Snake
 
     internal bool IsEating(List<Food> food)
     {
-      var isEating = food.Any(f => f.X == this.X && f.Y == this.Y);
+      if (!this.IsMoving)
+        return false;
 
-      if (isEating)
-        Console.WriteLine($"is eating @ {{{this.X}, {this.Y}}}");
+      var isEating = food.Any(f => f.X == this.X && f.Y == this.Y);
 
       return isEating;
     }
+
 
   }
 }

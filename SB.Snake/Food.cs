@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.Collections.Generic;
 
 namespace SB.Snake
 {
@@ -20,8 +18,8 @@ namespace SB.Snake
       var cols = boardSize.Width / 10;
       var rows = boardSize.Height / 10;
 
-      this.X = Program.RandomGenerator.Next(cols) * 10;
-      this.Y = Program.RandomGenerator.Next(rows) * 10;
+      this.X = Program.RndGen.Next(cols) * 10;
+      this.Y = Program.RndGen.Next(rows) * 10;
     }
 
     internal static List<Food> GenerateFoodPieces(int count, Size boardSize)

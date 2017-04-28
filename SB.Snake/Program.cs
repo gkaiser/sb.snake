@@ -8,7 +8,7 @@ namespace SB.Snake
 {
   static class Program
   {
-    internal static Random RandomGenerator = new Random();
+    internal static Random RndGen = new Random();
     internal static int Scale = 10;
 
     /// <summary>

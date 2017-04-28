@@ -31,7 +31,6 @@
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
       this.ctxMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-      this.ctxMain_miStart = new System.Windows.Forms.ToolStripMenuItem();
       this.ctxMain_miReset = new System.Windows.Forms.ToolStripMenuItem();
       this.ctxMain_sepMain = new System.Windows.Forms.ToolStripSeparator();
       this.ctxMain_miQuit = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,36 +40,28 @@
       // ctxMain
       // 
       this.ctxMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ctxMain_miStart,
             this.ctxMain_miReset,
             this.ctxMain_sepMain,
             this.ctxMain_miQuit});
       this.ctxMain.Name = "ctxMain";
-      this.ctxMain.Size = new System.Drawing.Size(103, 76);
-      // 
-      // ctxMain_miStart
-      // 
-      this.ctxMain_miStart.Name = "ctxMain_miStart";
-      this.ctxMain_miStart.Size = new System.Drawing.Size(102, 22);
-      this.ctxMain_miStart.Text = "Start";
-      this.ctxMain_miStart.Click += new System.EventHandler(this.ctxMain_miStart_Click);
+      this.ctxMain.Size = new System.Drawing.Size(153, 76);
       // 
       // ctxMain_miReset
       // 
       this.ctxMain_miReset.Name = "ctxMain_miReset";
-      this.ctxMain_miReset.Size = new System.Drawing.Size(102, 22);
+      this.ctxMain_miReset.Size = new System.Drawing.Size(152, 22);
       this.ctxMain_miReset.Text = "Reset";
       this.ctxMain_miReset.Click += new System.EventHandler(this.ctxMain_miReset_Click);
       // 
       // ctxMain_sepMain
       // 
       this.ctxMain_sepMain.Name = "ctxMain_sepMain";
-      this.ctxMain_sepMain.Size = new System.Drawing.Size(99, 6);
+      this.ctxMain_sepMain.Size = new System.Drawing.Size(149, 6);
       // 
       // ctxMain_miQuit
       // 
       this.ctxMain_miQuit.Name = "ctxMain_miQuit";
-      this.ctxMain_miQuit.Size = new System.Drawing.Size(102, 22);
+      this.ctxMain_miQuit.Size = new System.Drawing.Size(152, 22);
       this.ctxMain_miQuit.Text = "Quit";
       this.ctxMain_miQuit.Click += new System.EventHandler(this.ctxMain_miQuit_Click);
       // 
@@ -99,7 +90,6 @@
     #endregion
 
     private System.Windows.Forms.ContextMenuStrip ctxMain;
-    private System.Windows.Forms.ToolStripMenuItem ctxMain_miStart;
     private System.Windows.Forms.ToolStripMenuItem ctxMain_miReset;
     private System.Windows.Forms.ToolStripSeparator ctxMain_sepMain;
     private System.Windows.Forms.ToolStripMenuItem ctxMain_miQuit;
