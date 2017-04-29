@@ -15,11 +15,11 @@ namespace SB.Snake
     {
       this.BoardSize = boardSize;
 
-      var cols = boardSize.Width / 10;
-      var rows = boardSize.Height / 10;
+      var cols = boardSize.Width / Snake.WIDTH;
+      var rows = boardSize.Height / Snake.HEIGHT;
 
-      this.X = Program.RndGen.Next(cols) * 10;
-      this.Y = Program.RndGen.Next(rows) * 10;
+      this.X = Program.RndGen.Next(cols) * Snake.WIDTH;
+      this.Y = Program.RndGen.Next(rows) * Snake.HEIGHT;
     }
 
     internal static List<Food> GenerateFoodPieces(int count, Size boardSize)

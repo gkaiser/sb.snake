@@ -7,21 +7,24 @@ namespace SB.Snake
 {
   internal class Snake
   {
-    internal readonly Size BoardSize;
     internal int X;
     internal int Y;
-    internal int SpeedHoriz;
-    internal int SpeedVert;
-    internal const int WIDTH = 10;
-    internal const int HEIGHT = 10;
     internal int Length = 1;
+    internal int SpeedHoriz = 0;
+    internal int SpeedVert = 0;
+    internal readonly Size BoardSize;
+    internal const int WIDTH = 20;
+    internal const int HEIGHT = 20;
 
     internal Snake(Size boardSize)
     {
       this.BoardSize = boardSize;
 
-      this.X = (this.BoardSize.Width / 2) - (Snake.WIDTH / 2);
-      this.Y = (this.BoardSize.Height / 2) - (Snake.HEIGHT / 2);
+      var cols = this.BoardSize.Width / Snake.WIDTH;
+      var rows = this.BoardSize.Height / Snake.HEIGHT;
+
+      this.X = (cols / 2) * Snake.WIDTH;
+      this.Y = (rows / 2) * Snake.HEIGHT;
     }
 
     internal List<Point> History { get; } = new List<Point>();
@@ -29,6 +32,13 @@ namespace SB.Snake
     internal bool IsMoving => this.SpeedHoriz != 0 || this.SpeedVert != 0;
 
     internal bool IsEatingSelf => this.IsMoving && this.History.Any(p => p.X == this.X && p.Y == this.Y);
+
+    internal bool HasGoneOffTheReservation =>
+      this.IsMoving && (
+      this.X == 0 && this.SpeedHoriz == -1 ||
+      this.Y == 0 && this.SpeedVert == -1 ||
+      this.X + Snake.WIDTH == this.BoardSize.Width && this.SpeedHoriz == 1 ||
+      this.Y + Snake.HEIGHT == this.BoardSize.Height && this.SpeedVert == 1);
 
     internal void UpdateLocation()
     {
@@ -54,7 +64,6 @@ namespace SB.Snake
 
       return isEating;
     }
-
 
   }
 }
