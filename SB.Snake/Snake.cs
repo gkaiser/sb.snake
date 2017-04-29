@@ -37,8 +37,8 @@ namespace SB.Snake
       this.IsMoving && (
       this.X == 0 && this.SpeedHoriz == -1 ||
       this.Y == 0 && this.SpeedVert == -1 ||
-      this.X + Snake.WIDTH == this.BoardSize.Width && this.SpeedHoriz == 1 ||
-      this.Y + Snake.HEIGHT == this.BoardSize.Height && this.SpeedVert == 1);
+      this.X + Snake.WIDTH >= this.BoardSize.Width && this.SpeedHoriz == 1 ||
+      this.Y + Snake.HEIGHT >= this.BoardSize.Height && this.SpeedVert == 1);
 
     internal void UpdateLocation()
     {

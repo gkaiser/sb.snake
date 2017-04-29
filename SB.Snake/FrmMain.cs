@@ -9,7 +9,7 @@ namespace SB.Snake
   public partial class FrmMain : Form
   {
     private Timer RedrawTimer;
-    private const int FRAMES_PER_SEC = 6;//10;
+    private const int FRAMES_PER_SEC = 4;//10;
     private Snake Snake;
     private List<Food> FoodPieces;
 
@@ -125,14 +125,20 @@ namespace SB.Snake
 
     private void DrawSnakeHeadBlock(Graphics gfx)
     {
-      gfx.FillRectangle(Brushes.LightGray, this.Snake.X, this.Snake.Y, Snake.WIDTH, Snake.HEIGHT);
-      gfx.FillRectangle(Brushes.White, this.Snake.X + 1, this.Snake.Y + 1, Snake.WIDTH - 2, Snake.HEIGHT - 2);
+      gfx.DrawImage(SB.Snake.Properties.Resources.StdImg_24_Robot, this.Snake.X, this.Snake.Y, Snake.WIDTH, Snake.HEIGHT);
+      //gfx.FillRectangle(Brushes.LightGray, this.Snake.X, this.Snake.Y, Snake.WIDTH, Snake.HEIGHT);
+      //gfx.FillRectangle(Brushes.White, this.Snake.X + 1, this.Snake.Y + 1, Snake.WIDTH - 2, Snake.HEIGHT - 2);
     }
 
     private void DrawSnakeTailBlock(int i, Graphics gfx)
     {
-      gfx.FillRectangle(Brushes.LightGray, this.Snake.History[i].X, this.Snake.History[i].Y, Snake.WIDTH, Snake.HEIGHT);
-      gfx.FillRectangle(Brushes.White, this.Snake.History[i].X + 1, this.Snake.History[i].Y + 1, Snake.WIDTH - 2, Snake.HEIGHT - 2);
+      if (i == (this.Snake.History.Count - this.Snake.Length + 1))
+        gfx.DrawImage(SB.Snake.Properties.Resources.StdImg_24_RobotLegs, this.Snake.History[i].X, this.Snake.History[i].Y, Snake.WIDTH, Snake.HEIGHT);
+      else
+      {
+        gfx.FillRectangle(new SolidBrush(Color.FromArgb(79, 148, 28)), this.Snake.History[i].X, this.Snake.History[i].Y, Snake.WIDTH, Snake.HEIGHT);
+        gfx.FillRectangle(new SolidBrush(Color.FromArgb(163, 200, 107)), this.Snake.History[i].X + 1, this.Snake.History[i].Y + 1, Snake.WIDTH - 2, Snake.HEIGHT - 2);
+      }
     }
 
   }
